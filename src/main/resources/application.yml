@@ -1,0 +1,10 @@
+# 服务端A的application.yml
+server:
+  port: 8080
+  compression:
+    enabled: true # 启用压缩优化传输
+
+spring:
+  webflux:
+    client:
+      max-in-memory-size: 10MB # 调整WebClient缓存大小
