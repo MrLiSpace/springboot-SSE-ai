@@ -38,8 +38,8 @@ public class SSETestController {
                 .uri("/api/v1/open/chat/stream")
                 .accept(MediaType.TEXT_EVENT_STREAM)
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(BodyInserters.fromObject(JSONObject.toJSONString(param)))
-                .exchange().flatMapMany(clientResponse -> {
+                .body(BodyInserters.fromValue(JSONObject.toJSONString(param)))
+                .exchangeToFlux(clientResponse -> {
                     HttpStatus httpStatus = clientResponse.statusCode();
                     if (httpStatus.is2xxSuccessful()) {
                         Map<String, ResponseCookie> cookiesFromB =
